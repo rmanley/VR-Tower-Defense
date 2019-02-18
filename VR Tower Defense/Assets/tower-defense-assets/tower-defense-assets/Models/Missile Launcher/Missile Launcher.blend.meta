@@ -3,6 +3,30 @@ guid: 24b65d92fa1d2b74091b0d2c05dfb449
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
+    100000: Missile
+    100002: //RootNode
+    100004: Stand
+    100006: Turret
+    400000: Missile
+    400002: //RootNode
+    400004: Stand
+    400006: Turret
+    2100000: None__Missile_Launcher_missile_png
+    2100002: Bolts__Untitled
+    2100004: Stand__Untitled
+    2100006: Turret_Accent__Untitled_001
+    2100008: Main_Turret__Untitled_001
+    2300000: Missile
+    2300002: Stand
+    2300004: Turret
+    3300000: Missile
+    3300002: Stand
+    3300004: Turret
+    4300000: Missile
+    4300002: Stand
+    4300004: Turret
+    7400000: Default Take
+    9500000: //RootNode
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
@@ -38,6 +62,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -56,12 +81,15 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -76,7 +104,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

@@ -30,8 +30,8 @@ public class Node : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if(true)
-            return;
+        //if(true)
+        //    return;
 
         if (!buildManager.CanBuild)
             return;

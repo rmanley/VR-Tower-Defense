@@ -6,19 +6,22 @@ public class PlayerBullet : MonoBehaviour {
     public GameObject impactEffect;
     Gun gun;
     Vector3 startpos;
+    private float distanceThisFrame = 0f;
 
     private void Awake()
     {
-        gun = GameObject.Find("Gun").GetComponent<Gun>();
+        gun = FindObjectOfType<Gun>();
         startpos = transform.position;
     }
 
     void Update ()
     {
-        float distanceThisFrame = speed * Time.deltaTime;
+        distanceThisFrame = speed * Time.deltaTime;
         transform.Translate(Vector3.forward * distanceThisFrame);
 
         if (Vector3.Distance(transform.position, startpos) > gun.range) Destroy(gameObject);
+        Debug.Log(speed);
+        Debug.Log(distanceThisFrame);
 	}
 
     private void OnCollisionEnter(Collision collision)

@@ -2,12 +2,14 @@
 
 public class BuildManager : MonoBehaviour {
 
+    #region Singleton
     public static BuildManager instance;
 
     void Awake()
     {
         instance = this;
     }
+    #endregion
 
     public GameObject standardTurretPrefab;
     public GameObject anotherTurretPrefab;
