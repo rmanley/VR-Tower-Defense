@@ -42,5 +42,6 @@ public class PlayerBullet : MonoBehaviour {
         Destroy(effectIns, 2f);
 
         Destroy(gameObject);
+        PlayerStats.Money += 10;
     }
 }
