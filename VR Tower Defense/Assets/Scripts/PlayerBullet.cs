@@ -20,15 +20,15 @@ public class PlayerBullet : MonoBehaviour {
         transform.Translate(Vector3.forward * distanceThisFrame);
 
         if (Vector3.Distance(transform.position, startpos) > gun.range) Destroy(gameObject);
-        Debug.Log(speed);
-        Debug.Log(distanceThisFrame);
+        //Debug.Log(speed);
+        //Debug.Log(distanceThisFrame);
 	}
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.name == "Enemy(Clone)")
         {
-            Debug.Log("HIT THE ENEMY");
+            //Debug.Log("HIT THE ENEMY");
             HitTarget();
             Destroy(collision.gameObject);
 

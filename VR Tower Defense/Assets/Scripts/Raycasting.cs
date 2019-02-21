@@ -5,20 +5,40 @@ using UnityEngine;
 public class Raycasting : MonoBehaviour
 {
 
-    public RaycastHit hit;
+    public static RaycastHit hit;
+    bool first;
+    Collider node;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        first = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Physics.Raycast(transform.position, transform.forward, out hit, 100))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 100))
         {
-            //if(hit.transform.name == "Enemy(Clone)") Destroy(hit.transform.gameObject);
+            if (Shop.shopOpen)
+            {
+                if (hit.collider.name.Contains("Node"))
+                {
+                    if (first) node = hit.collider;
+                    first = false;
+                    if (node.name != hit.collider.name)
+                    {
+                        node.SendMessage("HoverOut");
+                    }
+                    node = hit.collider;
+                    //Debug.Log(node.name);
+                    node.SendMessage("HoverIn");
+                    if (Input.GetButtonDown("B"))
+                    {
+                        node.SendMessage("HoverPress");
+                    }
+                }
+            }
         }
     }
 }

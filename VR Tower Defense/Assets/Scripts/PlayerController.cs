@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("A") && !isJumping)
         {
-            //Debug.Log("A pressed");
             rb.velocity += Vector3.up * jumpVelocity;
             isJumping = true;
         }
