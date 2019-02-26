@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 135462436440699644}
   - component: {fileID: 114097528604635962}
   - component: {fileID: 1384670974099528165}
+  - component: {fileID: 8448768856102738422}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -105,7 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21089b0a1f430e24c990fff481e7e990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
 --- !u!54 &1384670974099528165
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -122,3 +122,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &8448768856102738422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891652825984716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 552804f765daeca459f3a74bcee7fc17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  health: 0
+  healthBar: {fileID: 0}
+  bounty: 10
+  speed: 10

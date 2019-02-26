@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour {
-
-    public float speed = 70f;
-    public GameObject impactEffect;
+public class PlayerProjectile : Projectile
+{
     Gun gun;
     Vector3 startpos;
     private float distanceThisFrame = 0f;
@@ -26,22 +24,20 @@ public class PlayerBullet : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Enemy(Clone)")
+        if(collision.gameObject.tag == "Enemy")
         {
             //Debug.Log("HIT THE ENEMY");
-            HitTarget();
-            Destroy(collision.gameObject);
-
-            
+            HitTarget(collision.gameObject);
         }
+        Destroy(gameObject);
     }
 
-    void HitTarget()
+    protected override void HitTarget(GameObject target)
     {
-        GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(effectIns, 2f);
+        base.HitTarget(target);
 
-        Destroy(gameObject);
-        PlayerStats.Money += 10;
+        EnemyStats enemyStats = target.gameObject.GetComponent<EnemyStats>();
+        PlayerManager.instance.player.GetComponent<PlayerStats>().money += enemyStats.bounty;
+        enemyStats.TakeDamage(damage);
     }
 }

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour {
+public class Turret : MonoBehaviour
+{
 
     private  Transform target;
 
@@ -73,7 +74,7 @@ public class Turret : MonoBehaviour {
     void Shoot()
     {
         GameObject bulletGo = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Bullet bullet = bulletGo.GetComponent<Bullet>();
+        TurretProjectile bullet = bulletGo.GetComponent<TurretProjectile>();
 
         if (bullet != null)
             bullet.Seek(target);

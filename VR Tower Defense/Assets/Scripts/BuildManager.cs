@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
-public class BuildManager : MonoBehaviour {
+public class BuildManager : MonoBehaviour
+{
 
     #region Singleton
     public static BuildManager instance;
+    private PlayerStats playerStats;
 
     void Awake()
     {
         instance = this;
+        playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
     }
     #endregion
 
@@ -17,22 +20,22 @@ public class BuildManager : MonoBehaviour {
     private TurretBlueprint turretToBuild;
 
     public bool CanBuild { get { return turretToBuild != null; } }
-    public bool HasMoney { get { return PlayerStats.Money >= turretToBuild.cost; } }
+    public bool HasMoney { get { return playerStats.money >= turretToBuild.cost; } }
 
     public void BuildTurretOn(Node node)
     {
-        if(PlayerStats.Money < turretToBuild.cost)
+        if(playerStats.money < turretToBuild.cost)
         {
             Debug.Log("Not enough money to build that!");
             return;
         }
 
-        PlayerStats.Money -= turretToBuild.cost;
+        playerStats.money -= turretToBuild.cost;
 
         GameObject turret = (GameObject)Instantiate(turretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity);
         node.turret = turret;
 
-        Debug.Log("Turret Built! Money left: " + PlayerStats.Money);
+        Debug.Log("Turret Built! Money left: " + playerStats.money);
     }
 
     public void SelectTurretToBuild(TurretBlueprint turret)
