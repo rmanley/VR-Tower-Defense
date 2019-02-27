@@ -39,6 +39,10 @@ public class Raycasting : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                node.SendMessage("HoverOut");
+            }
         }
     }
 }

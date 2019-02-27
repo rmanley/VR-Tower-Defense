@@ -50,14 +50,14 @@ public class Node : MonoBehaviour
 
     public void HoverIn()
     {
-        /*if (buildManager.HasMoney)
-        {*/
-            rend.material.color = hoverColor;/*
+        if (buildManager.HasMoney)
+        {
+            rend.material.color = hoverColor;
         }
         else
         {
             rend.material.color = notEnoughMoneyColor;
-        }*/
+        }
     }
 
     public void HoverOut()

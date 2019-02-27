@@ -31,8 +31,8 @@ public class PlayerStats : CharacterStats
 
     protected override void Die()
     {
-        base.Die();
-        Debug.Log("You Died!");
+        //base.Die();
+        MessageManager.instance.DieMessage();
         PlayerManager.instance.KillPlayer();
     }
 }

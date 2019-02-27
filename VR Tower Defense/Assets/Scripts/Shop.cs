@@ -29,6 +29,7 @@ public class Shop : MonoBehaviour
             GetComponent<Image>().enabled = !GetComponent<Image>().enabled;
             transform.GetChild(0).gameObject.SetActive(!transform.GetChild(0).gameObject.activeSelf);
             transform.GetChild(1).gameObject.SetActive(!transform.GetChild(1).gameObject.activeSelf);
+            SelectStandardTurret();
         }
 
         if (shopOpen)
@@ -46,12 +47,20 @@ public class Shop : MonoBehaviour
     public void SelectStandardTurret()
     {
         Debug.Log("standard turet selected");
+        var image = transform.GetChild(1).GetComponent<Image>();
+        image.canvasRenderer.SetAlpha(0.5f);
+        image = transform.GetChild(0).GetComponent<Image>();
+        image.canvasRenderer.SetAlpha(1f);
         buildManager.SelectTurretToBuild(standardTurret);
     }
 
     public void SelectAnotherTurret()
     {
         Debug.Log("Another turret selected");
+        var image = transform.GetChild(0).GetComponent<Image>();
+        image.canvasRenderer.SetAlpha(0.5f);
+        image = transform.GetChild(1).GetComponent<Image>();
+        image.canvasRenderer.SetAlpha(1f);
         buildManager.SelectTurretToBuild(anotherTurret);
     }
 

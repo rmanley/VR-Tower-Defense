@@ -11,6 +11,7 @@ public class EnemyStats : CharacterStats
     protected override void Die()
     {
         base.Die();
+        PlayerManager.instance.player.GetComponent<PlayerStats>().money += bounty;
         Destroy(gameObject);
     }
 }

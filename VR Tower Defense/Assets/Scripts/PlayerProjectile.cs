@@ -37,7 +37,6 @@ public class PlayerProjectile : Projectile
         base.HitTarget(target);
 
         EnemyStats enemyStats = target.gameObject.GetComponent<EnemyStats>();
-        PlayerManager.instance.player.GetComponent<PlayerStats>().money += enemyStats.bounty;
         enemyStats.TakeDamage(damage);
     }
 }
