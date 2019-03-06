@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
 
     void Respawn()
     {
+        Shop.shopOpen = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -7,7 +7,7 @@ public class Shop : MonoBehaviour
     public static bool shopOpen = false;
 
     public TurretBlueprint standardTurret;
-    public TurretBlueprint anotherTurret;
+    public TurretBlueprint missileLauncher;
 
     BuildManager buildManager;
 
@@ -38,7 +38,7 @@ public class Shop : MonoBehaviour
             switch (select)
             {
                 case -1: SelectStandardTurret(); break;
-                case  1: SelectAnotherTurret(); break;
+                case  1: SelectMissileLauncher(); break;
             }
         }
         
@@ -54,14 +54,14 @@ public class Shop : MonoBehaviour
         buildManager.SelectTurretToBuild(standardTurret);
     }
 
-    public void SelectAnotherTurret()
+    public void SelectMissileLauncher()
     {
         Debug.Log("Another turret selected");
         var image = transform.GetChild(0).GetComponent<Image>();
         image.canvasRenderer.SetAlpha(0.5f);
         image = transform.GetChild(1).GetComponent<Image>();
         image.canvasRenderer.SetAlpha(1f);
-        buildManager.SelectTurretToBuild(anotherTurret);
+        buildManager.SelectTurretToBuild(missileLauncher);
     }
 
 }
