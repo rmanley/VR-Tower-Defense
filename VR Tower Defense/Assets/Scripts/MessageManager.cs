@@ -16,11 +16,6 @@ public class MessageManager : MonoBehaviour
 
     public Text messageText;
 
-    public void Start()
-    {
-        messageText.enabled = false;
-    }
-
     public void DieMessage()
     {
         messageText.enabled = true;
@@ -38,5 +33,12 @@ public class MessageManager : MonoBehaviour
     public void DisableMessage()
     {
         messageText.enabled = false;
+    }
+
+    public void DebugMessage(string message)
+    {
+        messageText.enabled = true;
+        messageText.text = message;
+        Invoke("DisableMessage", 0.5f);
     }
 }
