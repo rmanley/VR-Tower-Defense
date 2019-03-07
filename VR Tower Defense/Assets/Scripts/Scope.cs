@@ -19,7 +19,6 @@ public class Scope : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         mainCamera = Camera.main;
-        normalFOV = mainCamera.fieldOfView;
     }
     
     void Update()
@@ -41,6 +40,7 @@ public class Scope : MonoBehaviour
         yield return new WaitForSeconds(0.15f);
         scopeHUD.SetActive(true);
         ToggleMask();
+        normalFOV = mainCamera.fieldOfView;
         mainCamera.fieldOfView = scopedFOV;
     }
 
