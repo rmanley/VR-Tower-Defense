@@ -23,7 +23,7 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("B"))
+        if (Input.GetButtonDown("R2"))
         {
             shopOpen = !shopOpen;
             GetComponent<Image>().enabled = !GetComponent<Image>().enabled;

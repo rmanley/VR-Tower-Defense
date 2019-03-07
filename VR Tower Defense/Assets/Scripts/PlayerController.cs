@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,5 +47,14 @@ public class PlayerController : MonoBehaviour
             rb.velocity += Vector3.up * jumpVelocity;
             isJumping = true;
         }
+
+        //show any button name that was pressed on the canvas
+        //if(Input.anyKeyDown)
+        //{
+        //    foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+        //    {
+        //        if (Input.GetKeyDown(kcode)) MessageManager.instance.DebugMessage(Enum.GetName(typeof(KeyCode), kcode));
+        //    }
+        //}
     }
 }

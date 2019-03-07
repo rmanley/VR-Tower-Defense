@@ -7,7 +7,6 @@ public class Scope : MonoBehaviour
     //TODO: customize scopes per weapon (unique FOV and HUD images (iron sights too))
 
     public GameObject scopeHUD;
-    public GameObject weaponCamera;
 
     public float scopedFOV = 10f;
     private float normalFOV;
@@ -41,14 +40,20 @@ public class Scope : MonoBehaviour
     {
         yield return new WaitForSeconds(0.15f);
         scopeHUD.SetActive(true);
-        weaponCamera.SetActive(false);
+        ToggleMask();
         mainCamera.fieldOfView = scopedFOV;
     }
 
     void OnUnscoped()
     {
         scopeHUD.SetActive(false);
-        weaponCamera.SetActive(true);
+        ToggleMask();
         mainCamera.fieldOfView = normalFOV;
+    }
+
+    void ToggleMask()
+    {
+        //XOR the weapons layer bit in the cullingMask bit mask
+        mainCamera.cullingMask ^= 1 << LayerMask.NameToLayer("Weapons");
     }
 }
