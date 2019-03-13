@@ -14,18 +14,11 @@ public class PlayerManager : MonoBehaviour
     }
     #endregion
 
-    public float respawnTime = 5f;
-
     public GameObject player;   //update to point to player that's spawned
 
     public void KillPlayer()
     {
-        Invoke("Respawn", respawnTime);
-    }
-
-    void Respawn()
-    {
+        SceneManager.LoadScene("GameOver");
         Shop.shopOpen = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

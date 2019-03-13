@@ -8,10 +8,16 @@ public class EnemyStats : CharacterStats
     public float speed = 10f;
     public float damage = 10f;
 
+    public GameObject deathEffect;
+
     protected override void Die()
     {
         base.Die();
         PlayerManager.instance.player.GetComponent<PlayerStats>().money += bounty;
+
+        GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 2f);
+
         Destroy(gameObject);
     }
 }

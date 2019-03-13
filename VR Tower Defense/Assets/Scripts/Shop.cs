@@ -14,7 +14,7 @@ public class Shop : MonoBehaviour
     void Start()
     {
         buildManager = BuildManager.instance;
-        GetComponent<Image>().enabled = !GetComponent<Image>().enabled;
+        GetComponent<Image>().enabled = false;
         transform.GetChild(0).gameObject.SetActive(!transform.GetChild(0).gameObject.activeSelf);
         transform.GetChild(1).gameObject.SetActive(!transform.GetChild(1).gameObject.activeSelf);
 
@@ -26,7 +26,7 @@ public class Shop : MonoBehaviour
         if (Input.GetButtonDown("R2"))
         {
             shopOpen = !shopOpen;
-            GetComponent<Image>().enabled = !GetComponent<Image>().enabled;
+            GetComponent<Image>().enabled = shopOpen;
             transform.GetChild(0).gameObject.SetActive(!transform.GetChild(0).gameObject.activeSelf);
             transform.GetChild(1).gameObject.SetActive(!transform.GetChild(1).gameObject.activeSelf);
             SelectStandardTurret();
@@ -46,7 +46,6 @@ public class Shop : MonoBehaviour
 
     public void SelectStandardTurret()
     {
-        Debug.Log("standard turet selected");
         var image = transform.GetChild(1).GetComponent<Image>();
         image.canvasRenderer.SetAlpha(0.5f);
         image = transform.GetChild(0).GetComponent<Image>();
@@ -56,7 +55,6 @@ public class Shop : MonoBehaviour
 
     public void SelectMissileLauncher()
     {
-        Debug.Log("Another turret selected");
         var image = transform.GetChild(0).GetComponent<Image>();
         image.canvasRenderer.SetAlpha(0.5f);
         image = transform.GetChild(1).GetComponent<Image>();

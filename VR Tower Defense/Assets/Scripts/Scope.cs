@@ -33,11 +33,19 @@ public class Scope : MonoBehaviour
             else
                 OnUnscoped();
         }
+        /*if (Input.GetButtonUp("L1"))
+        {
+            isScoped = !isScoped;
+            animator.SetBool("IsScoped", isScoped);
+
+            if (!isScoped)
+                OnUnscoped();
+        }*/
     }
 
     IEnumerator OnScoped()
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.10f);
         scopeHUD.SetActive(true);
         ToggleMask();
         normalFOV = mainCamera.fieldOfView;

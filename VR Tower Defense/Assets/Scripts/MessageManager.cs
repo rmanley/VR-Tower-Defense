@@ -16,13 +16,6 @@ public class MessageManager : MonoBehaviour
 
     public Text messageText;
 
-    public void DieMessage()
-    {
-        messageText.enabled = true;
-        messageText.text = "YOU DIED!";
-        Invoke("DisableMessage", 2f);
-    }
-
     public void MoneyMessage()
     {
         messageText.enabled = true;

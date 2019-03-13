@@ -5,7 +5,7 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
 
-    private  Transform target;
+    private Transform target;
 
     [Header("Attributes")]
 

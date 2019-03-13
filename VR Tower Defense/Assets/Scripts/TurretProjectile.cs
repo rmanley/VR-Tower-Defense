@@ -29,6 +29,7 @@ public class TurretProjectile : Projectile
         }
 
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+        transform.LookAt(target);
     }
 
     protected override void HitTarget(GameObject target)
@@ -37,5 +38,11 @@ public class TurretProjectile : Projectile
 
         EnemyStats enemyStats = target.gameObject.GetComponent<EnemyStats>();
         enemyStats.TakeDamage(damage);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

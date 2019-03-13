@@ -14,6 +14,8 @@ public class Gun : MonoBehaviour
 
     public GameObject bulletPrefab;
     public float range;
+    public float fireRate;
+    private float fireCountdown = 0f;
     public FireMode fireMode = FireMode.Semi;
 
     // Start is called before the first frame update
@@ -28,7 +30,11 @@ public class Gun : MonoBehaviour
         {
             if (Input.GetButtonDown("R1"))
             {
-                StartCoroutine("Shoot");
+                if (fireCountdown <= 0f)
+                {
+                    StartCoroutine("Shoot");
+                    fireCountdown = 1f / fireRate;
+                }
             }
         }
         else if(fireMode.Equals(FireMode.Auto))
@@ -38,6 +44,8 @@ public class Gun : MonoBehaviour
                 StartCoroutine("Shoot");
             }
         }
+
+        fireCountdown -= Time.deltaTime;
     }
 
     //can override this for different shoot types

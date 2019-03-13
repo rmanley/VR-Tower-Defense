@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         Vector3 dir = target.position - transform.position;
+        transform.LookAt(target.transform);
         transform.Translate(dir.normalized * stats.speed * Time.deltaTime, Space.World);
 
         if(Vector3.Distance(transform.position, target.position) <= 0.4f)
