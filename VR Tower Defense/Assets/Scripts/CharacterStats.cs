@@ -7,8 +7,7 @@ public class CharacterStats : MonoBehaviour
     [HideInInspector]
     public float health;
 
-    //public Image healthBar;
-    /**** TODO: Add health UI ****/
+    public Image healthBar;
 
     void Start()
     {
@@ -18,7 +17,7 @@ public class CharacterStats : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
-        //healthBar.fillAmount = health / maxHealth;
+        healthBar.fillAmount = health / maxHealth;
 
         if(health <= 0)
         {
