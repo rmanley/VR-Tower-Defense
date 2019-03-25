@@ -4,18 +4,17 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float speed = 70f;
-    public float damage = 25f;
     public float explosionRadius = 0f;
     public GameObject impactEffect;
 
-    protected virtual void HitTarget(GameObject target)
+    protected virtual void HitTarget(GameObject target, float damage)
     {
         GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(effectIns, 5f);
 
         if (explosionRadius > 0f)
         {
-            Explode();
+            Explode(damage);
         }
         else
         {
@@ -24,7 +23,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    void Explode()
+    void Explode(float damage)
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach(Collider collider in colliders)

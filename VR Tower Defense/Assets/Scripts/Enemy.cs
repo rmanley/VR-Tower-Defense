@@ -1,46 +1,43 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(CharacterStats))]
 public class Enemy : MonoBehaviour
 {
+    WaveSpawner ws;
     EnemyStats stats;
     CharacterStats playerStats;
-
     private Transform target;
-    private int wavepointIndex = 0;
+    public NavMeshAgent agent;
+
+    //private Transform target;
+   // private int wavepointIndex = 0;
 
     void Start()
     {
+        ws = FindObjectOfType<WaveSpawner>();
         stats = GetComponent<EnemyStats>();
         playerStats = PlayerManager.instance.player.GetComponent<CharacterStats>();
-        target = Waypoints.points[0];
+        target = ws.endPoint;
+        agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
-        Vector3 dir = target.position - transform.position;
-        transform.LookAt(target.transform);
-        transform.Translate(dir.normalized * stats.speed * Time.deltaTime, Space.World);
-
-        if(Vector3.Distance(transform.position, target.position) <= 0.4f)
-        {
-            GetNextWaypoint();
-        }
+        transform.LookAt(playerStats.transform.position);
+        agent.SetDestination(target.position);
     }
 
-    void GetNextWaypoint()
+    private void OnTriggerEnter(Collider collider)
     {
-        if(wavepointIndex >= Waypoints.points.Length - 1)
+        if (collider.gameObject.tag == "End")
         {
-            //reduce player health when last waypoint is reached
             playerStats.TakeDamage(stats.damage);
             Destroy(gameObject);
             return;
         }
-
-        wavepointIndex++;
-        target = Waypoints.points[wavepointIndex];
     }
 }

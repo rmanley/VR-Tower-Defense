@@ -22,6 +22,7 @@ public class Node : MonoBehaviour
         startColor = rend.material.color;
 
         buildManager = BuildManager.instance;
+        positionOffset = new Vector3(0, transform.lossyScale.y/2, 0);
     }
 
     public Vector3 GetBuildPosition()
@@ -31,7 +32,10 @@ public class Node : MonoBehaviour
 
     public void Update()
     {
-
+        if (!Shop.shopOpen)
+        {
+            rend.material.color = Color.white;
+        }
     }
 
     void HoverPress()

@@ -13,12 +13,13 @@ public class PlayerManager : MonoBehaviour
         instance = this;
     }
     #endregion
+    public static int levelscene;
 
     public GameObject player;   //update to point to player that's spawned
 
     public void KillPlayer()
     {
+        levelscene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene("GameOver");
-        Shop.shopOpen = false;
     }
 }

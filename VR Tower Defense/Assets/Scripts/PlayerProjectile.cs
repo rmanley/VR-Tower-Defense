@@ -8,11 +8,13 @@ public class PlayerProjectile : Projectile
     Vector3 dir;
     Collider target;
     public float heatSeekingRange;
+    private float damage;
     private float distanceThisFrame = 0f;
 
     private void Awake()
     {
         gun = FindObjectOfType<Gun>();
+        damage = gun.damage;
         startpos = transform.position;
         dir = Vector3.forward;
     }
@@ -26,7 +28,6 @@ public class PlayerProjectile : Projectile
             {
                 if (collider.tag == "Enemy")
                 {
-                    Debug.Log(collider.transform.name);
                     target = collider;
                     heatSeekingRange = 0f;
                     break;
@@ -50,21 +51,21 @@ public class PlayerProjectile : Projectile
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            HitTarget(collision.gameObject);
-        }
+            HitTarget(collision.gameObject, damage);
+        }   
         Destroy(gameObject);
     }
 
-    protected override void HitTarget(GameObject target)
+    protected override void HitTarget(GameObject target, float damage)
     {
-        base.HitTarget(target);
+        base.HitTarget(target, damage);
 
-        EnemyStats enemyStats = target.gameObject.GetComponent<EnemyStats>();
-        enemyStats.TakeDamage(damage);
+        //EnemyStats enemyStats = target.gameObject.GetComponent<EnemyStats>();
+        //enemyStats.TakeDamage(damage);
     }
 
     void OnDrawGizmosSelected()

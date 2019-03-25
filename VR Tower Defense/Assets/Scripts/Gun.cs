@@ -15,37 +15,36 @@ public class Gun : MonoBehaviour
     public GameObject bulletPrefab;
     public float range;
     public float fireRate;
-    private float fireCountdown = 0f;
+    public float damage;
     public FireMode fireMode = FireMode.Semi;
+    [HideInInspector]
+    public float fireCountdown = 0f;
 
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //}
-
-    // Update is called once per frame
     void Update()
     {
-        if(fireMode.Equals(FireMode.Semi))
+        if (!PauseMenu.paused)
         {
-            if (Input.GetButtonDown("R1"))
+            if (fireMode.Equals(FireMode.Semi))
             {
-                if (fireCountdown <= 0f)
+                if (Input.GetButtonDown("R1"))
                 {
-                    StartCoroutine("Shoot");
-                    fireCountdown = 1f / fireRate;
+                    if (fireCountdown <= 0f)
+                    {
+                        StartCoroutine("Shoot");
+                        fireCountdown = 1f / fireRate;
+                    }
                 }
             }
-        }
-        else if(fireMode.Equals(FireMode.Auto))
-        {
-            if(Input.GetButton("R1"))
+            else if (fireMode.Equals(FireMode.Auto))
             {
-                StartCoroutine("Shoot");
+                if (Input.GetButton("R1"))
+                {
+                    StartCoroutine("Shoot");
+                }
             }
-        }
 
-        fireCountdown -= Time.deltaTime;
+            fireCountdown -= Time.deltaTime;
+        }
     }
 
     //can override this for different shoot types

@@ -11,6 +11,7 @@ public class Turret : MonoBehaviour
 
     public float range = 15f;
     public float fireRate = 1f;
+    public float damage;
     private float fireCountdown = 0f;
 
     [Header("Unity Setup Fields")]
@@ -77,7 +78,7 @@ public class Turret : MonoBehaviour
         TurretProjectile bullet = bulletGo.GetComponent<TurretProjectile>();
 
         if (bullet != null)
-            bullet.Seek(target);
+            bullet.Seek(target, damage);
     }
 
     void OnDrawGizmosSelected()

@@ -33,14 +33,6 @@ public class Scope : MonoBehaviour
             else
                 OnUnscoped();
         }
-        /*if (Input.GetButtonUp("L1"))
-        {
-            isScoped = !isScoped;
-            animator.SetBool("IsScoped", isScoped);
-
-            if (!isScoped)
-                OnUnscoped();
-        }*/
     }
 
     IEnumerator OnScoped()

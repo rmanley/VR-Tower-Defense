@@ -23,7 +23,7 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("R2"))
+        if (Input.GetButtonDown("R2") && !PauseMenu.paused)
         {
             shopOpen = !shopOpen;
             GetComponent<Image>().enabled = shopOpen;
@@ -32,7 +32,7 @@ public class Shop : MonoBehaviour
             SelectStandardTurret();
         }
 
-        if (shopOpen)
+        if (shopOpen && !PauseMenu.paused)
         {
             int select = (int)Input.GetAxis("RJV");
             switch (select)

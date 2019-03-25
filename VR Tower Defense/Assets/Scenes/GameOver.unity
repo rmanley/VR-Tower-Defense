@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 1407c2790b7870b42a0df8ac84066e0c, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.23340464, g: 0.23357299, b: 0.22483525, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -796,7 +796,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Game Over
+  m_Text: GAME OVER
 --- !u!222 &1037332364
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1483,6 +1483,7 @@ GameObject:
   - component: {fileID: 2089819217}
   - component: {fileID: 2089819216}
   - component: {fileID: 2089819215}
+  - component: {fileID: 2089819218}
   m_Layer: 5
   m_Name: WavesNumber
   m_TagString: Untagged
@@ -1557,9 +1558,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '25
-
-'
+  m_Text: 25
 --- !u!222 &2089819217
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1568,6 +1567,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089819213}
   m_CullTransparentMesh: 0
+--- !u!114 &2089819218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089819213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c2444b730e1b74f8d6749944b57ec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WavesNumber: {fileID: 2089819216}
 --- !u!4 &2284250416271257616
 Transform:
   m_ObjectHideFlags: 0

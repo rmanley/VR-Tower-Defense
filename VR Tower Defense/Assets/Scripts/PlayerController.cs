@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (transform.position.y <= startHeight)
+        if (transform.position.y <= startHeight || IsGrounded())
         {
             isJumping = false;
         }
@@ -47,14 +47,10 @@ public class PlayerController : MonoBehaviour
             rb.velocity += Vector3.up * jumpVelocity;
             isJumping = true;
         }
+    }
 
-        //show any button name that was pressed on the canvas
-        //if(Input.anyKeyDown)
-        //{
-        //    foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
-        //    {
-        //        if (Input.GetKeyDown(kcode)) MessageManager.instance.DebugMessage(Enum.GetName(typeof(KeyCode), kcode));
-        //    }
-        //}
+    bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up,  1.51f);
     }
 }

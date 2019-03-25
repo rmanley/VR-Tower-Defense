@@ -14,7 +14,7 @@ public class WeaponSwitching : MonoBehaviour
     void Update()
     {
         int previousSelectedWeapon = selectedWeapon;
-        if(Input.GetButtonDown("Y"))
+        if(Input.GetButtonDown("Y") && !PauseMenu.paused)
         {
             if (selectedWeapon >= transform.childCount - 1)
                 selectedWeapon = 0;
@@ -32,6 +32,7 @@ public class WeaponSwitching : MonoBehaviour
             if(i == selectedWeapon)
             {
                 weapon.gameObject.SetActive(true);
+                //weapon.gameObject.GetComponent<Gun>().fireCountdown = 0;
             }
             else
             {
