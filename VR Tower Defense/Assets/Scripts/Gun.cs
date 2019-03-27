@@ -6,16 +6,16 @@ using UnityEngine;
 
 public enum FireMode
 {
-    Semi, Auto
+    Semi, Burst, Auto
 }
 
 public class Gun : MonoBehaviour
 {
 
     public GameObject bulletPrefab;
-    public float range;
-    public float fireRate;
-    public float damage;
+    public float range = 10f;
+    public float fireRate = 8f;
+    public float damage = 10f;
     public FireMode fireMode = FireMode.Semi;
     [HideInInspector]
     public float fireCountdown = 0f;

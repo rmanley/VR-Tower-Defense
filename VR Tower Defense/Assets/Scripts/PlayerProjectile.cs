@@ -8,7 +8,6 @@ public class PlayerProjectile : Projectile
     Vector3 dir;
     Collider target;
     public float heatSeekingRange;
-    private float damage;
     private float distanceThisFrame = 0f;
 
     private void Awake()
@@ -55,17 +54,9 @@ public class PlayerProjectile : Projectile
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            HitTarget(collision.gameObject, damage);
+            HitTarget(collision.gameObject);
         }   
         Destroy(gameObject);
-    }
-
-    protected override void HitTarget(GameObject target, float damage)
-    {
-        base.HitTarget(target, damage);
-
-        //EnemyStats enemyStats = target.gameObject.GetComponent<EnemyStats>();
-        //enemyStats.TakeDamage(damage);
     }
 
     void OnDrawGizmosSelected()

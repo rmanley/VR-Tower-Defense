@@ -8,6 +8,12 @@ public class EnemyStats : CharacterStats
     public float speed = 10f;
     public float damage = 10f;
 
+    public FireMode fireMode = FireMode.Semi;
+    public float range = 10f;
+    public float fireRate = 30f;
+    [HideInInspector]
+    public float fireCountdown = 0f;
+
     public GameObject deathEffect;
 
     protected override void Die()

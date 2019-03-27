@@ -3,7 +3,6 @@
 public class TurretProjectile : Projectile
 {
     private Transform target;
-    private float damage;
 
     public void Seek(Transform target, float damage)
     {
@@ -25,21 +24,13 @@ public class TurretProjectile : Projectile
         if (dir.magnitude <= distanceThisFrame)
         {
             if(target.gameObject.tag == "Enemy")
-                HitTarget(target.gameObject, damage);
+                HitTarget(target.gameObject);
             Destroy(gameObject);
             return;
         }
 
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
         transform.LookAt(target);
-    }
-
-    protected override void HitTarget(GameObject target, float damage)
-    {
-        base.HitTarget(target, damage);
-
-        //EnemyStats enemyStats = target.gameObject.GetComponent<EnemyStats>();
-        //enemyStats.TakeDamage(damage);
     }
 
     void OnDrawGizmosSelected()

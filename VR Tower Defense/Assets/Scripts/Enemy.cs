@@ -1,34 +1,37 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(CharacterStats))]
 public class Enemy : MonoBehaviour
 {
-    WaveSpawner ws;
-    EnemyStats stats;
+    public IStrategy Strategy { get; set; }
+    
+    [HideInInspector]
+    public EnemyStats stats;
     CharacterStats playerStats;
-    private Transform target;
-    public NavMeshAgent agent;
+    protected GameObject healthUI;
 
     //private Transform target;
-   // private int wavepointIndex = 0;
+    // private int wavepointIndex = 0;
 
     void Start()
     {
-        ws = FindObjectOfType<WaveSpawner>();
+        if (Strategy == null) Strategy = new EnemyPassiveStrategy(GetComponent<NavMeshAgent>());
         stats = GetComponent<EnemyStats>();
         playerStats = PlayerManager.instance.player.GetComponent<CharacterStats>();
-        target = ws.endPoint;
-        agent = GetComponent<NavMeshAgent>();
+        healthUI = stats.healthBar.GetComponentInParent<Canvas>().gameObject;
     }
 
     void Update()
     {
-        transform.LookAt(playerStats.transform.position);
-        agent.SetDestination(target.position);
+        healthUI.transform.LookAt(playerStats.transform.position);
+        ExecuteStrategy();
+    }
+
+    public void ExecuteStrategy()
+    {
+        Strategy.Execute();
     }
 
     private void OnTriggerEnter(Collider collider)

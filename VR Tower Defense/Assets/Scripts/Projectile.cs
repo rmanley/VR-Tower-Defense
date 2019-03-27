@@ -5,33 +5,34 @@ public class Projectile : MonoBehaviour
 {
     public float speed = 70f;
     public float explosionRadius = 0f;
+    public float damage;
     public GameObject impactEffect;
 
-    protected virtual void HitTarget(GameObject target, float damage)
+    protected virtual void HitTarget(GameObject target)
     {
         GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(effectIns, 5f);
 
         if (explosionRadius > 0f)
         {
-            Explode(damage);
+            Explode();
         }
         else
         {
-            EnemyStats enemyStats = target.gameObject.GetComponent<EnemyStats>();
-            enemyStats.TakeDamage(damage);
+            CharacterStats targetStats = target.gameObject.GetComponent<CharacterStats>();
+            targetStats.TakeDamage(damage);
         }
     }
 
-    void Explode(float damage)
+    void Explode()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach(Collider collider in colliders)
         {
-            if(collider.tag == "Enemy")
+            if(collider.tag == "Enemy" || collider.tag == "Player")
             {
-                EnemyStats enemyStats = collider.gameObject.GetComponent<EnemyStats>();
-                enemyStats.TakeDamage(damage);
+                CharacterStats targetStats = collider.gameObject.GetComponent<CharacterStats>();
+                targetStats.TakeDamage(damage);
             }
         }
     }
