@@ -3,7 +3,11 @@ guid: f2a054ba17a72be4eaf5adaf6d48be9f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - drone: {fileID: 2534454031152924593, guid: 418264193bb87a84ba1ffc0144283bca, type: 3}
+  - spawnPoint: {instanceID: 0}
+  - endPoint: {instanceID: 0}
+  - waveCountdownText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

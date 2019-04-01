@@ -43,4 +43,10 @@ public class Enemy : MonoBehaviour
             return;
         }
     }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(gameObject.GetComponent<SphereCollider>().center, gameObject.GetComponent<SphereCollider>().radius);
+    }
 }

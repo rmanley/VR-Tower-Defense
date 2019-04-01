@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WaveSpawner : MonoBehaviour {
-
-    public Transform enemyPrefab;
-    public Enemy enemy;
+public class WaveSpawner : MonoBehaviour
+{
+    public Enemy drone;
+    private Transform dronePrefab;
 
     public Transform spawnPoint;
     public Transform endPoint;
@@ -17,6 +17,11 @@ public class WaveSpawner : MonoBehaviour {
     public Text waveCountdownText;
 
     public static int waveIndex = 0;
+
+    private void Awake()
+    {
+        dronePrefab = drone.gameObject.transform;
+    }
 
     void Update()
     {
@@ -47,6 +52,6 @@ public class WaveSpawner : MonoBehaviour {
 
     void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(dronePrefab, spawnPoint.position, spawnPoint.rotation);
     }
 }

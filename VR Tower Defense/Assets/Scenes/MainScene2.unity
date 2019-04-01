@@ -10550,9 +10550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a054ba17a72be4eaf5adaf6d48be9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 4861136178365140, guid: 418264193bb87a84ba1ffc0144283bca,
-    type: 3}
-  enemy: {fileID: 0}
+  drone: {fileID: 2534454031152924593, guid: 418264193bb87a84ba1ffc0144283bca, type: 3}
   spawnPoint: {fileID: 1800399502}
   endPoint: {fileID: 1410130577}
   timeBetweenWaves: 15

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4857908, g: 0.547386, b: 0.5894805, a: 1}
+  m_IndirectSpecularColor: {r: 0.4841553, g: 0.5474088, b: 0.5924188, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1408,7 +1408,7 @@ MonoBehaviour:
   range: 30
   fireRate: 0
   damage: 0.25
-  fireMode: 1
+  fireMode: 2
   fireCountdown: 0
 --- !u!1001 &201692606
 PrefabInstance:
@@ -11664,9 +11664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a054ba17a72be4eaf5adaf6d48be9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 4861136178365140, guid: 418264193bb87a84ba1ffc0144283bca,
-    type: 3}
-  enemy: {fileID: 0}
+  drone: {fileID: 2534454031152924593, guid: 418264193bb87a84ba1ffc0144283bca, type: 3}
   spawnPoint: {fileID: 1800399502}
   endPoint: {fileID: 1410130577}
   timeBetweenWaves: 15
