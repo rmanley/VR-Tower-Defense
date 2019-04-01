@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public abstract class Projectile : MonoBehaviour
 {
     public float speed = 70f;
     public float explosionRadius = 0f;

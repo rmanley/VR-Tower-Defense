@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class WaveSpawner : MonoBehaviour
 {
     public Enemy drone;
+    public Enemy attackDrone;
     private Transform dronePrefab;
+    private Transform attackDronePrefab;
 
     public Transform spawnPoint;
     public Transform endPoint;
@@ -21,6 +23,7 @@ public class WaveSpawner : MonoBehaviour
     private void Awake()
     {
         dronePrefab = drone.gameObject.transform;
+        attackDronePrefab = attackDrone.gameObject.transform;
     }
 
     void Update()
@@ -52,6 +55,6 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(dronePrefab, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(attackDronePrefab, spawnPoint.position, spawnPoint.rotation);
     }
 }

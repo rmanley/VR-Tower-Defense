@@ -2,13 +2,24 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum EnemyStrategy
+{
+    Passive, Attack, Chase
+}
+
 [RequireComponent(typeof(CharacterStats))]
 public class Enemy : MonoBehaviour
 {
-    public IStrategy Strategy { get; set; }
+    private IStrategy strategy;
+    [SerializeField]
+    private EnemyStrategy enemyStrategy;
+    public EnemyStrategy Strategy
+    {
+        get { return enemyStrategy; }
+        set { enemyStrategy = value; SetStrategy(); }
+    }
     
-    [HideInInspector]
-    public EnemyStats stats;
+    EnemyStats stats;
     CharacterStats playerStats;
     protected GameObject healthUI;
 
@@ -17,10 +28,10 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        if (Strategy == null) Strategy = new EnemyPassiveStrategy(GetComponent<NavMeshAgent>());
         stats = GetComponent<EnemyStats>();
         playerStats = PlayerManager.instance.player.GetComponent<CharacterStats>();
         healthUI = stats.healthBar.GetComponentInParent<Canvas>().gameObject;
+        SetStrategy();
     }
 
     void Update()
@@ -31,7 +42,7 @@ public class Enemy : MonoBehaviour
 
     public void ExecuteStrategy()
     {
-        Strategy.Execute();
+        strategy.Execute();
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -41,6 +52,24 @@ public class Enemy : MonoBehaviour
             playerStats.TakeDamage(stats.damage);
             Destroy(gameObject);
             return;
+        }
+    }
+
+    //Adapted from: http://www.theappguruz.com/blog/learn-strategy-pattern-in-unity-in-less-than-15-minutes
+    private void SetStrategy()
+    {
+        //Ensure there is only 1 strategy component attached to enemy
+        Component component = gameObject.GetComponent<IStrategy>() as Component;
+        if (component != null) Destroy(component);
+
+        switch(enemyStrategy)
+        {
+            case EnemyStrategy.Passive:
+                strategy = gameObject.AddComponent<EnemyPassiveStrategy>();
+                break;
+            case EnemyStrategy.Attack:
+                strategy = gameObject.AddComponent<EnemyAttackStrategy>();
+                break;
         }
     }
 

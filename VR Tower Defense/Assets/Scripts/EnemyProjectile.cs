@@ -4,28 +4,25 @@ using UnityEngine;
 
 public class EnemyProjectile : Projectile
 {
-    Gun gun;
     Vector3 startpos;
     Vector3 dir;
     Collider target;
     public bool isHeatSeeking = false;
     private float distanceThisFrame = 0f;
-
-    // Start is called before the first frame update
+    public float range = 10f;
+    
     void Start()
     {
-        gun = FindObjectOfType<Gun>();
-        damage = gun.damage;
         startpos = transform.position;
         dir = Vector3.forward;
+        target = PlayerManager.instance.player.GetComponent<Collider>();
     }
     
     void Update()
     {
         
-
         distanceThisFrame = speed * Time.deltaTime;
-        if (target != null)
+        if (isHeatSeeking)
         {
             dir = target.transform.position - transform.position;
             transform.LookAt(target.transform);
@@ -34,7 +31,7 @@ public class EnemyProjectile : Projectile
         transform.Translate(dir.normalized * distanceThisFrame);
 
 
-        if (Vector3.Distance(transform.position, startpos) > gun.range)
+        if (Vector3.Distance(transform.position, startpos) > range)
         {
             Destroy(gameObject);
         }
@@ -45,7 +42,7 @@ public class EnemyProjectile : Projectile
         if (collision.gameObject.tag == "Player")
         {
             HitTarget(collision.gameObject);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }

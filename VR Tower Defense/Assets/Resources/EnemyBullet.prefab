@@ -106,6 +106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 50
   explosionRadius: 0
+  damage: 10
   impactEffect: {fileID: 1709116697034414, guid: 53f9c42b7663dc149839507d6cf44753,
     type: 3}
   isHeatSeeking: 0
+  range: 10

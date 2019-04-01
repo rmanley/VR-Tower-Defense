@@ -3,47 +3,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAttackStrategy : EnemyPassiveStrategy
+public class EnemyAttackStrategy : MonoBehaviour, IStrategy
 {
     private const float BURST_DELAY = 0.15f;
     private PlayerStats playerStats;
-    private Enemy context;
+    private GameObject context;
+    private WaveSpawner spawner;
+    private Transform target;
+    private NavMeshAgent agent;
+    private EnemyStats stats;
+    private Enemy enemy;
 
-    public EnemyAttackStrategy(NavMeshAgent agent) : base(agent)
+    private void Start()
     {
+        context = GetComponentInParent<Enemy>().gameObject;
+        stats = context.GetComponent<EnemyStats>();
+        agent = context.GetComponent<NavMeshAgent>();
+        enemy = context.GetComponent<Enemy>();
+        spawner = FindObjectOfType<WaveSpawner>();
+        target = spawner.endPoint;
         playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
-        context = agent.GetComponent<Enemy>();
     }
 
-    public override void Execute()
+    public void Execute()
     {
-        base.Execute();
+        agent.SetDestination(target.position);
         FaceTarget();
-        if (context.stats.fireCountdown <= 0f)
+        if (stats.fireCountdown <= 0f)
         {
-            switch (context.stats.fireMode)
+            switch (stats.fireMode)
             {
                 case FireMode.Semi:
                     Shoot();
                     break;
                 case FireMode.Burst:
-                    context.StartCoroutine(this.BurstShoot());
+                    enemy.StartCoroutine(this.BurstShoot());
                     break;
             }
         }
-        context.stats.fireCountdown -= Time.deltaTime;
+        stats.fireCountdown -= Time.deltaTime;
     }
 
     private void FaceTarget()
     {
-        agent.transform.LookAt(playerStats.transform.position);
+        context.transform.LookAt(playerStats.transform.position);
     }
 
     protected virtual void Shoot()
     {
         GameObject bulletGo = (GameObject)Object.Instantiate(Resources.Load("EnemyBullet", typeof(GameObject)), 
             context.transform.position, context.transform.rotation);
-        bulletGo.GetComponent<EnemyProjectile>().damage = context.stats.damage;
+        //bulletGo.GetComponent<EnemyProjectile>().damage = stats.damage;
+        //bulletGo.GetComponent<EnemyProjectile>().range = stats.range;
     }
 
     protected IEnumerator BurstShoot()
