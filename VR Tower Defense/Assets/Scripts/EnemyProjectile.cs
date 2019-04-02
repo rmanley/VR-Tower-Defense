@@ -9,7 +9,7 @@ public class EnemyProjectile : Projectile
     Collider target;
     public bool isHeatSeeking = false;
     private float distanceThisFrame = 0f;
-    public float range = 10f;
+    private float range = 10f;
     
     void Start()
     {
@@ -30,7 +30,6 @@ public class EnemyProjectile : Projectile
         }
         transform.Translate(dir.normalized * distanceThisFrame);
 
-
         if (Vector3.Distance(transform.position, startpos) > range)
         {
             Destroy(gameObject);
@@ -44,5 +43,11 @@ public class EnemyProjectile : Projectile
             HitTarget(collision.gameObject);
             Destroy(gameObject);
         }
+    }
+
+    public void SetDamageAndRange(float damage, float range)
+    {
+        this.damage = damage;
+        this.range = range;
     }
 }

@@ -10,6 +10,9 @@ public enum EnemyStrategy
 [RequireComponent(typeof(CharacterStats))]
 public class Enemy : MonoBehaviour
 {
+    public GameObject bulletPrefab;
+    public Transform[] firePoints;
+
     private IStrategy strategy;
     [SerializeField]
     private EnemyStrategy enemyStrategy;
@@ -58,24 +61,15 @@ public class Enemy : MonoBehaviour
     //Adapted from: http://www.theappguruz.com/blog/learn-strategy-pattern-in-unity-in-less-than-15-minutes
     private void SetStrategy()
     {
-        //Ensure there is only 1 strategy component attached to enemy
-        Component component = gameObject.GetComponent<IStrategy>() as Component;
-        if (component != null) Destroy(component);
-
         switch(enemyStrategy)
         {
             case EnemyStrategy.Passive:
-                strategy = gameObject.AddComponent<EnemyPassiveStrategy>();
+                strategy = new EnemyPassiveStrategy(gameObject);
                 break;
             case EnemyStrategy.Attack:
-                strategy = gameObject.AddComponent<EnemyAttackStrategy>();
+                strategy = new EnemyAttackStrategy(gameObject);
                 break;
         }
     }
 
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(gameObject.GetComponent<SphereCollider>().center, gameObject.GetComponent<SphereCollider>().radius);
-    }
 }

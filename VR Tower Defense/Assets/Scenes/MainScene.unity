@@ -11664,8 +11664,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a054ba17a72be4eaf5adaf6d48be9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drone: {fileID: 5840438452753597573, guid: 418264193bb87a84ba1ffc0144283bca, type: 3}
-  attackDrone: {fileID: 927055527079885200, guid: a2fce367fb494d8489050ff11abaac8e,
+  drone: {fileID: 3493801498536412837, guid: 418264193bb87a84ba1ffc0144283bca, type: 3}
+  attackDrone: {fileID: 7190543988716519900, guid: a2fce367fb494d8489050ff11abaac8e,
     type: 3}
   spawnPoint: {fileID: 1800399502}
   endPoint: {fileID: 1410130577}
@@ -19598,7 +19598,7 @@ GameObject:
   - component: {fileID: 2284250416542893892}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

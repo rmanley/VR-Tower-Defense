@@ -3,33 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAttackStrategy : MonoBehaviour, IStrategy
+public class EnemyAttackStrategy : IStrategy
 {
-    private const float BURST_DELAY = 0.15f;
-    private PlayerStats playerStats;
-    private GameObject context;
-    private WaveSpawner spawner;
-    private Transform target;
-    private NavMeshAgent agent;
-    private EnemyStats stats;
-    private Enemy enemy;
+    protected const float BURST_DELAY = 0.15f;
+    protected PlayerStats playerStats;
+    protected GameObject context;
+    protected WaveSpawner spawner;
+    protected Transform target;
+    protected NavMeshAgent agent;
+    protected EnemyStats stats;
+    protected Enemy enemy;
 
-    private void Start()
+    public EnemyAttackStrategy(GameObject context)
     {
-        context = GetComponentInParent<Enemy>().gameObject;
+        this.context = context;
         stats = context.GetComponent<EnemyStats>();
         agent = context.GetComponent<NavMeshAgent>();
         enemy = context.GetComponent<Enemy>();
-        spawner = FindObjectOfType<WaveSpawner>();
+        spawner = Object.FindObjectOfType<WaveSpawner>();
         target = spawner.endPoint;
         playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
     }
 
-    public void Execute()
+    public virtual void Execute()
     {
         agent.SetDestination(target.position);
         FaceTarget();
-        if (stats.fireCountdown <= 0f)
+        float distance = Vector3.Distance(playerStats.transform.position, enemy.transform.position);
+
+        if (distance <= stats.range && stats.fireCountdown <= 0f)
         {
             switch (stats.fireMode)
             {
@@ -40,21 +42,27 @@ public class EnemyAttackStrategy : MonoBehaviour, IStrategy
                     enemy.StartCoroutine(this.BurstShoot());
                     break;
             }
+            stats.fireCountdown = 1f / stats.fireRate;
         }
         stats.fireCountdown -= Time.deltaTime;
     }
 
-    private void FaceTarget()
+    protected void FaceTarget()
     {
         context.transform.LookAt(playerStats.transform.position);
     }
 
     protected virtual void Shoot()
     {
-        GameObject bulletGo = (GameObject)Object.Instantiate(Resources.Load("EnemyBullet", typeof(GameObject)), 
-            context.transform.position, context.transform.rotation);
-        //bulletGo.GetComponent<EnemyProjectile>().damage = stats.damage;
-        //bulletGo.GetComponent<EnemyProjectile>().range = stats.range;
+        foreach(Transform firePoint in enemy.firePoints)
+        {
+            GameObject bulletGo = Object.Instantiate(enemy.bulletPrefab, firePoint.position, firePoint.rotation);
+            EnemyProjectile bullet = bulletGo.GetComponent<EnemyProjectile>();
+
+            if (bullet != null)
+                bullet.SetDamageAndRange(stats.damage, stats.range);
+        }
+        
     }
 
     protected IEnumerator BurstShoot()

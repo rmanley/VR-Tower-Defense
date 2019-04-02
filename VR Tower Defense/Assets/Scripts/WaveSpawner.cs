@@ -7,8 +7,6 @@ public class WaveSpawner : MonoBehaviour
 {
     public Enemy drone;
     public Enemy attackDrone;
-    private Transform dronePrefab;
-    private Transform attackDronePrefab;
 
     public Transform spawnPoint;
     public Transform endPoint;
@@ -22,8 +20,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void Awake()
     {
-        dronePrefab = drone.gameObject.transform;
-        attackDronePrefab = attackDrone.gameObject.transform;
+        waveIndex = 0;
     }
 
     void Update()
@@ -45,7 +42,7 @@ public class WaveSpawner : MonoBehaviour
     {
         waveIndex++;
 
-        for (int i = 0; i<waveIndex; i++)
+        for (int i = 0; i < waveIndex; i++)
         {
             SpawnEnemy();
             yield return new WaitForSeconds(0.5f);
@@ -55,6 +52,18 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(attackDronePrefab, spawnPoint.position, spawnPoint.rotation);
+        Transform enemy = drone.transform;
+        if(waveIndex >= 2)
+        {
+            if (Random.value < 0.2) drone.Strategy = EnemyStrategy.Attack;
+            else drone.Strategy = EnemyStrategy.Passive;
+        }
+        if(waveIndex >= 7)
+        {
+            if (Random.value < 0.3) enemy = drone.transform;
+            else enemy = attackDrone.transform;
+        }
+
+        Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
     }
 }

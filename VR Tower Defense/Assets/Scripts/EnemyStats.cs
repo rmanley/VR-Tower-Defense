@@ -9,8 +9,8 @@ public class EnemyStats : CharacterStats
     public float damage = 10f;
 
     public FireMode fireMode = FireMode.Semi;
-    public float range = 10f;
-    public float fireRate = 30f;
+    public float range = 20f;
+    public float fireRate = 2f;
     [HideInInspector]
     public float fireCountdown = 0f;
 
@@ -25,5 +25,11 @@ public class EnemyStats : CharacterStats
         Destroy(effect, 2f);
 
         Destroy(gameObject);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

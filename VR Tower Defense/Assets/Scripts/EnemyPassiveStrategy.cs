@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyPassiveStrategy : MonoBehaviour, IStrategy
+public class EnemyPassiveStrategy : IStrategy
 {
     protected GameObject context;
     protected WaveSpawner spawner;
     protected Transform target;
     protected NavMeshAgent agent;
 
-    private void Start()
+    public EnemyPassiveStrategy(GameObject context)
     {
-        context = GetComponentInParent<Enemy>().gameObject;
+        this.context = context;
         agent = context.GetComponent<NavMeshAgent>();
         spawner = Object.FindObjectOfType<WaveSpawner>();
         target = spawner.endPoint;
