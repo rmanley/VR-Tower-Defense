@@ -24,6 +24,7 @@ public class EnemyStats : CharacterStats
         GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 2f);
 
+        WaveSpawner.enemyCount--;
         Destroy(gameObject);
     }
 

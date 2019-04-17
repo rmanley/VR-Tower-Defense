@@ -17,6 +17,7 @@ public class CharacterStats : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        if (health > maxHealth) health = maxHealth;
         healthBar.fillAmount = health / maxHealth;
 
         if(health <= 0)

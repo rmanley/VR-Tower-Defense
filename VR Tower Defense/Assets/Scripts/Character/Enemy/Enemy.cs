@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     EnemyStats stats;
     CharacterStats playerStats;
     protected GameObject healthUI;
+    //public GameObject gfx;
 
     //private Transform target;
     // private int wavepointIndex = 0;
@@ -52,7 +53,8 @@ public class Enemy : MonoBehaviour
     {
         if (collider.gameObject.tag == "End")
         {
-            playerStats.TakeDamage(stats.damage);
+            playerStats.TakeDamage(stats.damage*10);
+            WaveSpawner.enemyCount--;
             Destroy(gameObject);
             return;
         }

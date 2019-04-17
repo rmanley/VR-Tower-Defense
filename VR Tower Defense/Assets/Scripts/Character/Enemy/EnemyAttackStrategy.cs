@@ -13,6 +13,7 @@ public class EnemyAttackStrategy : IStrategy
     protected NavMeshAgent agent;
     protected EnemyStats stats;
     protected Enemy enemy;
+    //protected GameObject gfx;
 
     public EnemyAttackStrategy(GameObject context)
     {
@@ -23,6 +24,7 @@ public class EnemyAttackStrategy : IStrategy
         spawner = Object.FindObjectOfType<WaveSpawner>();
         target = spawner.endPoint;
         playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+        //gfx = enemy.gfx;
     }
 
     public virtual void Execute()

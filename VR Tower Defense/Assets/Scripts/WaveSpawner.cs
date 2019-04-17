@@ -11,27 +11,30 @@ public class WaveSpawner : MonoBehaviour
     public Transform spawnPoint;
     public Transform endPoint;
 
-    public float timeBetweenWaves = 5f;
-    private float countdown = 2f;
+    public float timeBetweenWaves = 3f;
+    private float countdown = 3f;
 
     public Text waveCountdownText;
 
     public static int waveIndex = 0;
+    public static int enemyCount = 0;
 
     private void Awake()
     {
+        countdown = 3f;
         waveIndex = 0;
+        enemyCount = 0;
     }
 
     void Update()
     {
-        if(countdown <= 0f)
+        if (countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
         }
 
-        countdown -= Time.deltaTime;
+        if(enemyCount == 0) countdown -= Time.deltaTime;
 
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
 
@@ -42,28 +45,31 @@ public class WaveSpawner : MonoBehaviour
     {
         waveIndex++;
 
-        for (int i = 0; i < waveIndex; i++)
+        for (int i = 0; i < waveIndex/2 + 1; i++)
         {
+            enemyCount++;
             SpawnEnemy();
             yield return new WaitForSeconds(0.5f);
         }
-        
     }
 
     void SpawnEnemy()
     {
         Transform enemy = drone.transform;
-        if(waveIndex >= 2)
-        {
-            if (Random.value < 0.2) drone.Strategy = EnemyStrategy.Attack;
-            else drone.Strategy = EnemyStrategy.Passive;
-        }
-        if(waveIndex >= 7)
-        {
-            if (Random.value < 0.3) enemy = drone.transform;
+        float ad = 0.5f;
+        float attack = 0.5f;
+        if (Random.value > ad) enemy = drone.transform;
             else enemy = attackDrone.transform;
+        if (Random.value < attack)
+        {
+            drone.Strategy = EnemyStrategy.Attack;
+            attackDrone.Strategy = EnemyStrategy.Attack;
         }
-
+        else
+        {
+            drone.Strategy = EnemyStrategy.Passive;
+            attackDrone.Strategy = EnemyStrategy.Passive;
+        }
         Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
     }
 }

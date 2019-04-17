@@ -101,8 +101,9 @@ Transform:
   m_GameObject: {fileID: 2593163254008225975}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3.11, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
-  m_Children: []
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children:
+  - {fileID: 6001031162063003247}
   m_Father: {fileID: 3520331074138548606}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -185,7 +186,6 @@ Transform:
   m_Children:
   - {fileID: 2588225505239452847}
   - {fileID: 2017893909737841078}
-  - {fileID: 6001031162063003247}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -235,10 +235,10 @@ MonoBehaviour:
   healthBar: {fileID: 5156978607367495806}
   bounty: 10
   speed: 10
-  damage: 2
+  damage: 1
   fireMode: 0
-  range: 30
-  fireRate: 5
+  range: 20
+  fireRate: 3
   fireCountdown: 0
   deathEffect: {fileID: 1709116697034414, guid: 458401012114bf14bad3cf2552454a51,
     type: 3}
@@ -317,7 +317,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.15}
+  m_AnchoredPosition: {x: 0, y: 0.8}
   m_SizeDelta: {x: 100, y: 21.9988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7575741746178320041
@@ -478,10 +478,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8196057595998875674}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.013, y: -0.008, z: 1.189}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0052, y: 1.2408, z: 0.4756}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
-  m_Father: {fileID: 3520331074138548606}
-  m_RootOrder: 2
+  m_Father: {fileID: 2588225505239452847}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

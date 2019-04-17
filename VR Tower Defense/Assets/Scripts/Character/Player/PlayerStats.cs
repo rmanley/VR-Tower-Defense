@@ -19,7 +19,7 @@ public class PlayerStats : CharacterStats
         if(!isInvincible && collision.gameObject.tag == "Enemy")
         {
             isInvincible = true;
-            TakeDamage(collision.gameObject.GetComponent<EnemyStats>().damage);
+            TakeDamage(collision.gameObject.GetComponent<EnemyStats>().damage*10);
             Invoke("ResetInvincibility", 2f);   //Invincible for 2 seconds after running into an enemy.
         }
     }
